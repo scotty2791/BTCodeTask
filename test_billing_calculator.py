@@ -1,3 +1,4 @@
+import os
 import billing_calculator as bc
 
 VALIDTIME = "14:02:03"
@@ -117,6 +118,7 @@ def test_collect_session_data():
 
 # Test full tool on sample data
 def test_main(capfd):
+
     bc.main(SHORTVALIDTESTFILE)
     out, err = capfd.readouterr()
     assert out == "ALICE99 1 31\n"

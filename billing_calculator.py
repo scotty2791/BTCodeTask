@@ -5,6 +5,7 @@ from datetime import datetime
 
 # Create a person object to store data about their sessions and duration
 class Person:
+
     def __init__(self, name, sessions, duration, data):
         self.name = name
         self.sessions = sessions
@@ -47,6 +48,7 @@ def main(inputfile):
 
 # Get the lines from the test file input, and create a list of only valid ones
 def get_inputlines(pathname):
+
     file_lines = []
 
     with open(pathname, 'r') as rf:
@@ -61,13 +63,7 @@ def get_inputlines(pathname):
 # Check each line is a valid format, and has a valid timestamp
 def line_validation(inputline):
 
-    if not valid_line(inputline):
-        return False
-
-    if not valid_time(inputline.split()[0]):
-        return False
-
-    return True
+    return valid_line(inputline) and valid_time(inputline.split()[0])
 
 
 # Check each line consists of
@@ -92,12 +88,14 @@ def valid_time(timestamp):
 
 # Return time difference of two times in integer seconds
 def calculate_delta(start_time, end_time):
+
     t1 = datetime.strptime(start_time, "%H:%M:%S")
     t2 = datetime.strptime(end_time, "%H:%M:%S")
     return int((t2-t1).total_seconds())
 
 
 def collect_session_data(user, start_time, end_time):
+
     session_starts = []
 
     for dataentry in user.data:
@@ -128,4 +126,5 @@ def collect_session_data(user, start_time, end_time):
 
 
 if __name__ == "__main__":
+
     main(sys.argv[1])
